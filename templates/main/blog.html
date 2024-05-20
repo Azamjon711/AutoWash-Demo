@@ -1,0 +1,73 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+        
+        
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Blog Grid</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="{% url 'home' %}">Home</a>
+                        <a href="{% url 'blog' %}">Blog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+        
+        
+        <!-- Blog Start -->
+        <div class="blog">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>Our Blog</p>
+                    <h2>Latest news & articles</h2>
+                </div>
+                <div class="row">
+                    {% for post in posts %}
+                        <div class="col-lg-4">
+                            <div class="blog-item">
+                                <div class="blog-img">
+                                    <img src="{{ post.image.url }}" alt="Image">
+                                    <div class="meta-date">
+                                        <span>{{ post.date }}</span>
+                                        <strong>{{ post.month }}</strong>
+                                        <span>{{ post.year }}</span>
+                                    </div>
+                                </div>
+                                <div class="blog-text">
+                                    <h3><a href="{% url 'blog-detail' post.slug %}">{{ post.title }}</a></h3>
+                                    <p>
+                                        {{ post.text }}
+                                    </p>
+                                </div>
+                                <div class="blog-meta">
+                                    <p><i class="fa fa-user"></i><a href="">{{ post.creator }}</a></p>
+                                    <p><i class="fa fa-folder"></i><a href="">{{ post.category }}</a></p>
+                                    <p><i class="fa fa-comments"></i><a href="">Comments</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Blog End -->
+
+{% endblock %}
